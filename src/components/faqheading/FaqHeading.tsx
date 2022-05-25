@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+// import Icon from "../../assets/Vector.png";
 
 const FaqHeading = () => {
   return (
@@ -24,8 +25,8 @@ const FaqHeading = () => {
             nobis sit architecto, magnam rem incidunt iure. Ullam in optio ipsam
             deleniti?</span>
           <div className="deleEditCon">
-            <span>Delete</span>
-            <span>Edit</span>
+            <span className="deleEdit">Delete</span>
+            <span className="deleEdit">Edit</span>
           </div>
         </div>
         <div className="question">
@@ -39,6 +40,12 @@ const FaqHeading = () => {
             nobis sit architecto, magnam rem incidunt iure. Ullam in optio ipsam
             deleniti?</span>
 
+          <div className="buttonCon">
+              <button className="lastBtn" type="button">
+              {/* <img className="icons" src={Icon} alt="icon" /> */}
+              Add a Question
+              </button>
+          </div>
           <div className="deleEditCon">
             <span className="deleEdit">Delete</span>
             <span className="deleEdit">Edit</span>

@@ -18,7 +18,7 @@
 .secondItem {
     width: 1029px;
     margin: 5px;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
     margin-bottom: 30px;
 }
@@ -46,25 +46,49 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* font-weight: 200px; */
 }
 
 .questions {
     margin-top: 40px;
     width: 840px;
     height: 50px;
-    border: solid 1px blue;
     margin-top: 5px;
+    margin: 15px;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .deleEditCon {
-    border: solid 1px blue;
     width: 1029px; 
-    height: 100px;
+    height: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.deleEdit {
+    margin: 5px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 25px;
+}
+
+.buttonCon {
+    width: 1029px; 
+    height: 50px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
 }
 
-.deleEdit {
-    
+.lastBtn {
+    width: 189px;
+    height: 47.19px;
+    background: #A987AC;
+    border-radius: 23.3139px;
+    font-weight: 400;
+    font-size: 16.9555px;
+    color: #FFFFFF;
+    border: solid 1px #A987AC;
 }

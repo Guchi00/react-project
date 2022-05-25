@@ -1,13 +1,15 @@
 import React from "react";
 import "./style.css";
 
-interface ActivityType {
+export interface ActivityType {
+    _id: string;
     message: string;
     createdAt: string;
     author: string;
 }
 
-function Activity({message, createdAt, author}: ActivityType) {
+function Activity({data}: {data:ActivityType}) {
+    const {message, createdAt, author} = data;
   return (
     <div className="expand">
       <h3 className="h3">

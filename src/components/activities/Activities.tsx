@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "./style.css";
-import Activity from '../activity/Activity';
+import Activity, { ActivityType } from '../activity/Activity';
+import axios from "axios";
+
 
 const activities = [
     {
@@ -26,21 +28,30 @@ const activities = [
         author: "Ugochi",
         time: "9:15",
         id: "4"
-
     }
 ];
 
-
 function Activities() {
+    const BASE_URL = "http://localhost:9000/activity/all";
+    const [items, setItems] = useState<ActivityType[] | null>(null);
+
+    useEffect(() => {
+      axios.get(BASE_URL).then((res) => {
+        console.log(res);
+        setItems(res.data);
+      });
+    }, []); 
+
+
+    if (items === null) return <div>loading...</div>;
+
   return (
       <>
     <div className="expandCon">
-    {activities.map((item) => (
+    {items.map((item) => (
         <Activity
-          key={item.id}
-          message={item.message}
-          author={item.author}
-          createdAt={item.time}
+          key={item._id}
+          data={item}
         />
       ))}
     </div>

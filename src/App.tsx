@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Linking />
       <UsersPosts />
-      <h4>Activity</h4>
+      <h4 className='textActivity'>Activity</h4>
       <Activities />
       <FaqHeading />
     </div>
