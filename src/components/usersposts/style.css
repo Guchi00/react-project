@@ -1,0 +1,68 @@
+.frameDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame {
+  width: 1029px;
+  height: 315px;
+  background: rgba(244, 234, 245, 0.1);
+  border: 1px solid rgba(131, 96, 128, 0.2);
+  backdrop-filter: blur(85px);
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.postsItemDiv {
+  height: 157.5px;
+  width: 1029px;
+  display: flex;
+}
+
+.postItems {
+  height: 157.5px;
+  width: 1029px;
+}
+
+.icon-paraDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icons {
+  margin-right: 20px;
+  margin-bottom: 25px;
+}
+
+.fourBtn {
+  width: 134px;
+  height: 34px;
+  background: #7e4e82;
+  border-radius: 17px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  border: solid 1px #7e4e82;
+  color: #ffffff;
+}
+
+.create {
+  width: 300px;
+  height: 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  margin-top: 40px;
+}
+
+.responses {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 32px;
+  color: rgba(126, 78, 130, 0.74);
+}
+
