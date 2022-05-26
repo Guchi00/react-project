@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .textActivity {
   /* text-align: center; */
   font-size: 20px;

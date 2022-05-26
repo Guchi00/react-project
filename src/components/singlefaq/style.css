@@ -1,56 +1,55 @@
-.question {
-    width: 1029px;
-    height: 340px;
-    background: rgba(249, 244, 250, 0.5);
-    border-radius: 8px;
-    margin: 20px;
+.faq-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* font-weight: 200px; */
+    width: 1029px;
+    background: rgba(249, 244, 250, 0.5);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
 }
 
-.questions {
-    margin-top: 40px;
-    width: 840px;
-    height: 50px;
-    margin-top: 5px;
-    margin: 15px;
-    font-weight: 300;
-    font-size: 18px;
-}
-
-.deleEditCon {
-    width: 1029px; 
-    height: 30px;
+.faq-box {
+    padding: 20px;
+    padding-bottom: 0;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-end;
 }
 
-.deleEdit {
-    margin: 5px;
-    font-weight: 500;
-    font-size: 18px;
-    margin-right: 25px;
+.faq-box:nth-child(2) {
+    margin-bottom: 20px;
 }
 
-.buttonCon {
-    width: 1029px; 
-    height: 50px;
+.faq-title, .faq-text {
+    font-size: .9rem;
+    line-height: 1.5rem;
+}
+
+.faq-title {
+    min-width: 80px;
+    color: #323232;
+}
+
+.faq-text {
+    line-height: 1.5rem;
+}
+
+.editing {
+    border: solid 2px #323232;
+    padding: 10px;
+}
+
+.action-box {
     display: flex;
-    align-items: flex-end;
     justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
-.lastBtn {
-    width: 189px;
-    height: 47.19px;
-    background: #A987AC;
-    border-radius: 23.3139px;
-    font-weight: 400;
-    font-size: 16.9555px;
-    color: #FFFFFF;
-    border: solid 1px #A987AC;
+.action-box button {
+    all: unset;
+    cursor: pointer;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: .9rem;
 }
+
+/* .action-box button */

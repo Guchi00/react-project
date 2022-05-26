@@ -6,48 +6,87 @@ import SingleFaq, { FaqsType } from '../singlefaq/SingleFaq';
 
 // const faq = [
 //     {
-//         questions: "can I get a good technology for my app",
-//         answers: "Yes, you can and our developers are also professionals incase you need...",
+//         questions: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+//         answers: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
 //         isAnswered: false,
-//         id: "1"
+//         _id: "1"
 //     },
 //     {
-//         questions: "can I get a good technology for my app",
-//         answers: "Yes, you can and our developers are also professionals incase you need...",
+//         questions: "Arcu felis bibendum ut tristique et egestas. Faucibus turpis in eu mi. Egestas dui id ornare arcu odio ut sem nulla pharetra. Justo eget magna fermentum iaculis eu non. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula.",
+//         answers: "Viverra maecenas accumsan lacus vel facilisis volutpat est velit. At auctor urna nunc id cursus metus aliquam eleifend mi. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras.",
 //         isAnswered: false,
-//         id: "2"
+//         _id: "2"
 //     }
 // ]
 
 const FaqHeading = () => {
-    const BASE_URL = "http://localhost:9000/faqs";
+    const BASE_URL = "http://localhost:9000";
     const [items, setItems] = useState<FaqsType[] | null>(null);
 
-    useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlbm9zYWdpZTg4QGdtYWlsLmNvbSIsImlhdCI6MTY1MzU0OTczNH0.CbMCTnyjAYI5WekcdVeiCTgV-dU5DMOAwn0ei_MHgmY";
-        const options = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
+    const getOptions = () => {
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtlbm9zYWdpZTg4QGdtYWlsLmNvbSIsImlhdCI6MTY1MzU0OTczNH0.CbMCTnyjAYI5WekcdVeiCTgV-dU5DMOAwn0ei_MHgmY";
+      const options = {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      };
+      return options;
+    }
 
-        axios.get(BASE_URL, options).then((res) => {
+    useEffect(() => {
+        axios.get(`${BASE_URL}/faqs`, getOptions()).then((res) => {
           console.log(res);
           setItems(res.data.slice(0,2));
         });
-      }, []);
+        // setItems(faq);
+    }, []);
+
+    const handleUpdate = (faq: FaqsType) => {
+      axios.put(`${BASE_URL}/editfaq/${faq._id}`, getOptions()).then((res) => {
+        const updatedItems = items?.map((item: FaqsType) => {
+          return item._id === faq._id ? faq : item;
+        });
+        setItems(updatedItems as FaqsType[]);
+      });
+
+      // const updatedItems = items?.map((item: FaqsType) => {
+      //   return item._id === faq._id ? faq : item;
+      // });
+      // setItems(updatedItems as FaqsType[]);
+    }
+
+    const handleDelete = (id: string) => {
+      axios.delete(`${BASE_URL}/deletefaq/${id}`, getOptions()).then((res) => {
+        const updatedItems = items?.filter((item: FaqsType) => {
+          return item._id !== id;
+        });
+        setItems(updatedItems as FaqsType[]);
+      });
+
+      // const updatedItems = items?.filter((item: FaqsType) => {
+      //   return item._id !== id;
+      // });
+      // setItems(updatedItems as FaqsType[]);
+    }
 
     if (items === null) return <div>loading...</div>;
 
   return (
     <>
-      <div className="questionsCon">
-      {items.map((item) => (    
-        <SingleFaq
-          key={item._id}
-          data={item}
-        />
-      ))}
+      <div className="faqs-section-wrapper">
+        <div className="questionsCon">
+        {items.map((item) => (    
+          <SingleFaq
+            key={item._id}
+            data={item}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        ))}
+        </div>
+        <button className="add-button">
+          Add a Question
+        </button>
       </div>
     </>
   );

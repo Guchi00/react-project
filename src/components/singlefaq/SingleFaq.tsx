@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import "./style.css"
 
 export interface FaqsType {
@@ -8,15 +8,84 @@ export interface FaqsType {
     isAnswered: boolean,
 }
 
-function SingleFaq({data}: {data:FaqsType}) {
-    const {questions, answers} = data;
+type Props = {
+  data: FaqsType;
+  onUpdate: (faq: FaqsType) => void;
+  onDelete: (id: string) => void;
+}
+
+function SingleFaq({ data, onUpdate, onDelete}: Props) {
+    const { _id, isAnswered, questions, answers } = data;
+    const [question, setQuestion] = useState(questions);
+    const [answer, setAnswer] = useState(answers); 
+    const questionRef = useRef<HTMLSpanElement>(null);
+    const answerRef = useRef<HTMLSpanElement>(null);
+
+    const [inputClass, setInputClass] = useState('faq-text');
+    const [editButtonText, setEditButtonText] = useState('Edit');
+
+    const edit = () => {
+      if (questionRef.current && answerRef.current) {
+        if (editButtonText === 'Edit') {
+          questionRef.current.contentEditable = 'true';
+          answerRef.current.contentEditable = 'true';
+          setInputClass('faq-text editing');
+          setEditButtonText('Update');
+        } else {
+          onUpdate({
+            _id,
+            isAnswered,
+            questions: question,
+            answers: answer
+          });
+          questionRef.current.contentEditable = 'false';
+          answerRef.current.contentEditable = 'false';
+          setInputClass('faq-text');
+          setEditButtonText('Edit');
+        }
+      }
+    }
+
+    const remove = () => {
+      onDelete(_id);
+    }
+
+    const handleQuestionChange = (e: any) => {
+      const value = e.target.nodeValue;
+      setQuestion(value as string);
+    }
+
+    const handleAnswerChange = (e: any) => {
+      const value = e.target.nodeValue;
+      setAnswer(value as string);
+    }
+
   return (
-    <div className="question">
-        <span className="questions">
-            {questions}
+    <div className="faq-wrapper">
+      <div className="faq-box">
+        <span className="faq-title">Question: </span>
+        <span
+          ref={questionRef}
+          onChange={handleQuestionChange}
+          className={inputClass}
+        >
+          {question}
         </span>
-        <span>{answers}</span>
-        
+      </div>
+      <div className="faq-box">
+        <span className="faq-title">Answer: </span>
+        <span
+          ref={answerRef}
+          onChange={handleAnswerChange}
+          className={inputClass}
+        >
+          {answer}
+        </span>
+      </div>
+      <div className="action-box">
+        <button onClick={remove}>Delete</button>
+        <button onClick={edit}>{editButtonText}</button>
+      </div>
     </div>
   )
 }
