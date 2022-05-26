@@ -9,7 +9,7 @@ export interface ActivityType {
 }
 
 function Activity({data}: {data:ActivityType}) {
-  const {message, createdAt, author} = data;
+  const {message, author} = data;
   const [bottomClass, setBottomClass] = useState("bottom hide");
   const [buttonText, setButtonText] = useState("Expand");
 
@@ -34,7 +34,7 @@ function Activity({data}: {data:ActivityType}) {
         </button>
       </div>
       <div className={bottomClass}>
-        <span className="time">{createdAt}</span>
+        <span className="time">9:15</span>
         <span className="author">{author}</span>
       </div>
     </div>
